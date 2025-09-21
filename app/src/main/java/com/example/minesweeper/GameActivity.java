@@ -224,8 +224,6 @@ public class GameActivity extends AppCompatActivity {
 
     // navigation
     private void goToResults() {
-        awaitingEndTap = false;
-
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(EXTRA_DID_WIN, engine.didWin());
         intent.putExtra(EXTRA_SECONDS, stopwatch.getSeconds());
@@ -246,6 +244,15 @@ public class GameActivity extends AppCompatActivity {
         isFlagMode = false;
         modeToggle.setImageResource(R.drawable.shovel);
         awaitingEndTap = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // reset game
+        if (awaitingEndTap) {
+            resetForNewGame();
+        }
     }
 
     @Override
