@@ -3,10 +3,12 @@ package com.example.minesweeper;
 import android.os.Handler;
 import android.os.Looper;
 
-public class Stopwatch {
+public class
+Stopwatch {
     private int clock = 0;
     private boolean running = false;
     private final Handler handler = new Handler(Looper.getMainLooper());
+    private Runnable timerRunnable;
 
     // listener to update UI
     public interface OnTickListener {
@@ -21,6 +23,9 @@ public class Stopwatch {
     public void start() {
         if (!running) {
             running = true;
+            if (timerRunnable != null) {
+                handler.removeCallbacks(timerRunnable);
+            }
             runTimer();
         }
     }
@@ -28,11 +33,17 @@ public class Stopwatch {
     // pause stopwatch
     public void stop() {
         running = false;
+        if (timerRunnable != null) {
+            handler.removeCallbacks(timerRunnable);
+        }
     }
 
     // reset to 0 / stop
     public void reset() {
         running = false;
+        if (timerRunnable != null) {
+            handler.removeCallbacks(timerRunnable);
+        }
         clock = 0;
         if (listener != null) {
             listener.onTick(clock);
@@ -46,7 +57,7 @@ public class Stopwatch {
 
     // tick once per second
     private void runTimer() {
-        handler.post(new Runnable() {
+        timerRunnable = new Runnable() {
             @Override
             public void run() {
                 if (running) {
@@ -54,9 +65,11 @@ public class Stopwatch {
                     if (listener != null) {
                         listener.onTick(clock);
                     }
+                    // Only schedule next tick if still running
+                    handler.postDelayed(this, 1000);
                 }
-                handler.postDelayed(this, 1000);
             }
-        });
+        };
+        handler.post(timerRunnable);
     }
 }
