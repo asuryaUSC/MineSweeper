@@ -1,11 +1,12 @@
 package com.example.minesweeper;
 
 import android.os.Handler;
+import android.os.Looper;
 
 public class Stopwatch {
     private int clock = 0;
     private boolean running = false;
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler(Looper.getMainLooper());
 
     // listener to update UI
     public interface OnTickListener {

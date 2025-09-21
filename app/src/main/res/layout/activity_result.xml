@@ -9,98 +9,87 @@
     tools:context=".ResultActivity">
 
     <!-- Header bar -->
-    <com.google.android.material.appbar.MaterialToolbar
+    <LinearLayout
         android:id="@+id/headerBarResult"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="56dp"
+        android:background="@android:color/holo_purple"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="?attr/colorPrimary"
-        app:contentInsetStartWithNavigation="0dp"
-        app:elevation="0dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/titleLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CS 310"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"/>
+
+        <View
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:layout_weight="1"/>
 
-            <TextView
-                android:id="@+id/titleLeftResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CS 310"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="?attr/colorOnPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+        <TextView
+            android:id="@+id/titleRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aaditya Surya"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:textAlignment="viewEnd"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/titleRightResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aaditya Surya"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="?attr/colorOnPrimary"
-                android:textAlignment="viewEnd"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.appbar.MaterialToolbar>
-
-
-    <!-- Result texts -->
+    <!-- Center stack: time + result lines -->
     <LinearLayout
         android:id="@+id/resultContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintTop_toBottomOf="@id/headerBarResult"
         app:layout_constraintBottom_toTopOf="@id/playAgainButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Time Used -->
         <TextView
             android:id="@+id/timeMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
             android:textColor="@android:color/black"
+            android:textSize="20sp"
             tools:text="Used 12 seconds." />
 
-        <!-- You won. / You lost. -->
         <TextView
             android:id="@+id/resultMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:textColor="@android:color/black"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
             tools:text="You won." />
 
-        <!-- Good job! / "Nice try! -->
         <TextView
             android:id="@+id/remarkMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textSize="18sp"
             android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
             tools:text="Good job!" />
     </LinearLayout>
 
     <!-- Play again button -->
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/playAgainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,5 +100,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="24dp"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

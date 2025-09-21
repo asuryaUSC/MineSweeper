@@ -34,6 +34,8 @@ android {
 dependencies {
 
     implementation(libs.appcompat)
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.12.0")
